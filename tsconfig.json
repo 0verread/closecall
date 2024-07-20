@@ -1,26 +1,14 @@
 {
-  // Change this to match your project
-  "include": ["src/**/*"],
-	// We don't need to transpile these directories
-  "exclude": ["node_modules", "dist"],
+  "include": ["src/**/*.ts"],
   "compilerOptions": {
-    // Tells TypeScript to read JS files, as
-    // normally they are ignored as source files
-    "allowJs": false,
-    // Generate d.ts files
-    "declaration": true,
-    // This compiler run should
-    // only output d.ts files
-    "emitDeclarationOnly": false,
-    // Types should go into this directory.
-    // Removing this would place the .d.ts files
-    // next to the .js files
+    "target": "es2017",
+    "module": "es2022",
     "outDir": "dist",
-    // go to js file when using IDE functions like
-    // "Go to Definition" in VSCode
-    "declarationMap": true,
-    "strict": true,
-    "esModuleInterop": true,
-    "moduleResolution":"Node"
-  },
+    "moduleResolution": "Node",
+    "forceConsistentCasingInFileNames": true,     
+    "esModuleInterop": true,       
+    "strict": true,                                      
+    "noUncheckedIndexedAccess": true,                 
+    "skipLibCheck": true                                 
+  }
 }
