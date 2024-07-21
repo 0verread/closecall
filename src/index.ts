@@ -1,3 +1,9 @@
+/**
+ * simple import xenova/transformers will throw error. read more here 
+ * https://stackoverflow.com/questions/76883048/err-require-esm-for-import-with-xenova-transformers
+ * @returns pipeline 
+ */
+
 async function _initXenova() {
   let TransformersApi = Function('return import("@xenova/transformers")')();
   const { pipeline, env } = await TransformersApi;
@@ -10,6 +16,10 @@ async function _initXenova() {
 const MODEL = "Xenova/mobilebert-uncased-mnli";
 let classifierInstance: any | null = null;
 
+/**
+ * initialize the classifier instance
+ * @returns a classifier instance
+ */
 const initClassifierInstance = async () => {
   if (!classifierInstance) {
     const pipeline = await _initXenova();
@@ -18,12 +28,17 @@ const initClassifierInstance = async () => {
   return classifierInstance;
 }
 
+/**
+ *  check if text is relevant to context
+ * @param text the text to check if that's relevant to context 
+ * @param keywords array of context keyword arry
+ * @returns Boolean promise
+ */
 const classfyRelevance = async (text: string, keywords: string[]): Promise<boolean> => {
   const classfier = await initClassifierInstance();
   const labels = [`${keywords.join(', or ')}.`, 'something else'];
   const result = await classfier(text, labels);
 
-  console.log(result);
   const relevantIndex = result.labels?.indexOf(`${keywords.join(', or ')}.`);
   const irrelevantIndex = result.label?.indexOf('something else');
   
@@ -35,15 +50,4 @@ const isPromptRelevant = async (prompt: string, keywords: string[]): Promise<boo
 
 }
 
-const text = 'I have a problem with my iphone that needs to be resolved asap!';
-const labels = [ 'urgent', 'not urgent', 'phone', 'tablet', 'computer' ];
-
-const ress = async () => {
-  const re = await isPromptRelevant(text, labels);
-  console.log(re);
-}
-ress();
-
-export {};
-
-
+export default isPromptRelevant;
