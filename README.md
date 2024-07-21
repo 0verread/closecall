@@ -8,8 +8,28 @@ AI-powered chatbots can be abused with irrelevant queries, making LLM cost highe
 
 ### Usage
 
+1. Install the package
+```bash
+npm i closecall
+```
 
-### Contribution
+```js
+import isPromptRelevant from "closecall";
+
+const keywords = ["Soccer", "game", "summer", "play"]
+var prompt = "I want to play soccer";
+
+
+const MakeAPICall = async () => {
+  const isRelevant = await isPromptRelevant(prompt, keywords);
+  if(!isRelevant) {
+    throw new Error("Can't make API call with irrelevant prompt");
+  } else {
+    // make api call
+  }
+  console.log(isRelevant)
+}
+```
 
 ### License
 
