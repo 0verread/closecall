@@ -41,9 +41,6 @@ const classfyRelevance = async (text: string, keywords: string[]): Promise<boole
   const relevantIndex = result.labels?.indexOf(`${keywords.join(', or ')}.`);
   const irrelevantIndex = result.labels?.indexOf('something else');
 
-  console.log(result)
-  console.log(relevantIndex, irrelevantIndex)
-
   return result.scores[relevantIndex] > result.scores[irrelevantIndex];
 }
 

@@ -2,9 +2,9 @@
   "name": "closecall",
   "version": "1.0.0",
   "description": "a lightweight npm package to keep llm calls within the relevant keywords",
-  "main": "src/index.cjs",
-  "module": "src/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
